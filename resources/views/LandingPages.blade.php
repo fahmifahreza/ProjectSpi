@@ -214,7 +214,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            PROFIL
+                            Profil
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">SEJARAH</a></li>
@@ -328,24 +328,17 @@
         <div class="row">
             <div class="col-md-4">
                 <h4 class="section-title">Berita</h4>
-                <div class="card mb-3">
-                    <img src="https://tse3.mm.bing.net/th/id/OIP.IHBoHa-ktdGJkEIvMgv0YwHaE7?rs=1&pid=ImgDetMain&o=7&rm=3"
-                        class="card-img-top" alt="berita">
-                    <div class="card-body">
-                        <small class="text-muted">24 Agustus 2025</small>
-                        <p>Pelatihan Pemberian keterangan ...</p>
-                        <a href="#" class="btn btn-sm btn-primary">View All</a>
+                @foreach($beritas as $b)
+                    <div class="card mb-3">
+                        <img src="{{ $b->gambar }}" class="card-img-top" alt="berita">
+                        <div class="card-body">
+                            <small class="text-muted">{{ $b->tanggal }}</small>
+                            <p>{{ Str::limit($b->judul, 50) }}</p>
+                            <!-- Tombol ke detail berita -->
+                            <a href="{{ route('berita.show', $b->id) }}" class="btn btn-sm btn-primary">Read More</a>
+                        </div>
                     </div>
-                </div>
-                <div class="card mb-3">
-                    <img src="https://tse3.mm.bing.net/th/id/OIP.IHBoHa-ktdGJkEIvMgv0YwHaE7?rs=1&pid=ImgDetMain&o=7&rm=3"
-                        class="card-img-top" alt="berita">
-                    <div class="card-body">
-                        <small class="text-muted">24 Agustus 2025</small>
-                        <p>Pelatihan Pemberian keterangan ...</p>
-                        <a href="#" class="btn btn-sm btn-primary">View All</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="col-md-4">
                 <h4 class="section-title">Artikel</h4>
@@ -393,13 +386,48 @@
     </div>
 
     <!-- Laporan Pelanggaran -->
-    <div class="report-section">
-        <div class="report-box">
-            <h4>Laporan Pelanggaran</h4>
-            <p>Anda menemukan indikasi pelanggaran?</p>
-            <a href="#" class="btn btn-danger btn-lg">Laporkan Segera!</a>
+    <section class="report-section py-5 bg-light">
+        <div class="container text-center">
+            <div class="report-box p-5 rounded-4 shadow-lg text-white"
+                style="background: #0d2d50; max-width: 700px; margin: auto; transition: transform 0.3s;">
+                <!-- Ikon -->
+                <div class="mb-3">
+                    <img src="https://cdn-icons-png.flaticon.com/512/564/564619.png" alt="Warning Icon"
+                        style="width:80px;">
+                </div>
+
+                <!-- Judul -->
+                <h2 class="fw-bold mb-3">Laporan Pelanggaran</h2>
+
+                <!-- Deskripsi -->
+                <p class="mb-4">
+                    Temukan indikasi pelanggaran? Laporkan segera agar proses pengawasan dapat berjalan dengan tepat dan
+                    cepat.
+                </p>
+
+                <!-- Tombol -->
+                <a href="#" class="btn btn-lg btn-danger fw-bold px-5 py-3"
+                    style="border-radius:50px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: all 0.3s;">
+                    Laporkan Sekarang!
+                </a>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <style>
+        /* Animasi hover pada box */
+        .report-box:hover {
+            transform: translateY(-10px);
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Animasi hover pada tombol */
+        .report-box .btn-danger:hover {
+            background-color: #ff4b4b;
+            transform: scale(1.05);
+        }
+    </style>
+
 
     <!-- Footer -->
     <footer class="text-center text-white py-4" style="background-color: #0d2d50;">
@@ -427,3 +455,11 @@
 </body>
 
 </html>
+
+<!--
+ commit baru:
+
+git add .
+git commit -m "pesan commit"
+git push
+-->
